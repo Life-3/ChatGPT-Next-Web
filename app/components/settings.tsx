@@ -336,6 +336,10 @@ export function Settings() {
     console.log("[Update] remote version ", updateStore.remoteVersion);
   }
 
+  function VisitPage() {
+    window.open("https://api2d.com/merchant/738", "_blank");
+  }
+
   const usage = {
     used: updateStore.used,
     subscription: updateStore.subscription,
@@ -349,6 +353,17 @@ export function Settings() {
     setLoadingUsage(true);
     updateStore.updateUsage(force).finally(() => {
       setLoadingUsage(false);
+    });
+  }
+
+  const api2dUsage = {
+    balance: updateStore.api2dBalance,
+  };
+  const [loadingApi2dUsage, setLoadingApi2dUsage] = useState(false);
+  function checkApi2dUsage(force = false) {
+    setLoadingApi2dUsage(true);
+    updateStore.updateApi2dUsage(force).finally(() => {
+      setLoadingApi2dUsage(false);
     });
   }
 
@@ -688,6 +703,40 @@ export function Settings() {
               )}
             </ListItem>
           ) : null}
+
+          <ListItem
+            title={Locale.Settings.Api2dUsage.Title}
+            subTitle={
+              showUsage
+                ? loadingApi2dUsage
+                  ? Locale.Settings.Api2dUsage.IsChecking
+                  : Locale.Settings.Api2dUsage.SubTitle(
+                      api2dUsage?.balance ?? "[?]",
+                    )
+                : Locale.Settings.Api2dUsage.NoAccess
+            }
+          >
+            {!showUsage || loadingApi2dUsage ? (
+              <div />
+            ) : (
+              <IconButton
+                icon={<ResetIcon></ResetIcon>}
+                text={Locale.Settings.Api2dUsage.Check}
+                onClick={() => checkApi2dUsage(true)}
+              />
+            )}
+          </ListItem>
+
+          <ListItem
+            title={Locale.Settings.Api2dPurchase.Title}
+            subTitle={Locale.Settings.Api2dPurchase.SubTitle}
+          >
+            <IconButton
+              icon={<AddIcon></AddIcon>}
+              text={Locale.Settings.Api2dPurchase.Buy}
+              onClick={() => VisitPage()}
+            />
+          </ListItem>
 
           <ListItem
             title={Locale.Settings.CustomModel.Title}

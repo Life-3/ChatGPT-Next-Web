@@ -221,6 +221,23 @@ const cn = {
       Check: "重新检查",
       NoAccess: "输入 API Key 或访问密码查看余额",
     },
+
+    Api2dUsage: {
+      Title: "剩余点数查询",
+      SubTitle(balance: any) {
+        return `剩余点数 ${balance}`;
+      },
+      IsChecking: "正在检查…",
+      Check: "重新检查",
+      NoAccess: "输入 API Key 或访问密码查看余额",
+    },
+
+    Api2dPurchase: {
+      Title: "购买",
+      SubTitle: "购买Key或是更多的点数",
+      Buy: "购买",
+    },
+
     AccessCode: {
       Title: "访问密码",
       SubTitle: "管理员已开启加密访问",

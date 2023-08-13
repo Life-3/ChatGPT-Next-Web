@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { FETCH_COMMIT_URL, FETCH_TAG_URL, StoreKey } from "../constant";
-import { api } from "../client/api";
+import { api, getHeaders } from "../client/api";
 import { getClientConfig } from "../config/client";
 
 export interface UpdateStore {
@@ -14,8 +14,11 @@ export interface UpdateStore {
   subscription?: number;
   lastUpdateUsage: number;
 
+  api2dBalance?: number;
+
   getLatestVersion: (force?: boolean) => Promise<void>;
   updateUsage: (force?: boolean) => Promise<void>;
+  updateApi2dUsage: (force?: boolean) => Promise<void>;
 
   formatVersion: (version: string) => string;
 }
@@ -53,6 +56,30 @@ async function getVersion(type: "date" | "tag") {
     }[];
     return data.at(0)?.name;
   }
+}
+
+async function checkApi2dUsage() {
+  // return {
+  //   api2dBalance: 200
+  // }
+
+  const url = "https://stream.api2d.net/dashboard/billing/credit_grants";
+  const headers = getHeaders();
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: headers,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  return {
+    api2dBalance: data.total_available,
+  };
 }
 
 export const useUpdateStore = create<UpdateStore>()(
@@ -114,6 +141,20 @@ export const useUpdateStore = create<UpdateStore>()(
             set(() => ({
               used: usage.used,
               subscription: usage.total,
+            }));
+          }
+        } catch (e) {
+          console.error((e as Error).message);
+        }
+      },
+
+      async updateApi2dUsage(force = false) {
+        try {
+          const usage = await checkApi2dUsage();
+
+          if (usage) {
+            set(() => ({
+              api2dBalance: usage.api2dBalance,
             }));
           }
         } catch (e) {

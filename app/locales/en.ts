@@ -223,6 +223,23 @@ const en: LocaleType = {
       Check: "Check",
       NoAccess: "Enter API Key to check balance",
     },
+
+    Api2dUsage: {
+      Title: "Account Balance",
+      SubTitle(balance: any) {
+        return `Remaining points ${balance}`;
+      },
+      IsChecking: "Checking...",
+      Check: "Check",
+      NoAccess: "Enter API Key to check balance",
+    },
+
+    Api2dPurchase: {
+      Title: "Purchase",
+      SubTitle: "Buy key or more points",
+      Buy: "Buy",
+    },
+
     AccessCode: {
       Title: "Access Code",
       SubTitle: "Access control enabled",
