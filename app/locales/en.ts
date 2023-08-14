@@ -42,7 +42,7 @@ const en: LocaleType = {
     },
     Commands: {
       new: "Start a new chat",
-      newm: "Start a new chat with mask",
+      newm: "Start a new chat with role",
       next: "Next Chat",
       prev: "Previous Chat",
       clear: "Clear Context",
@@ -57,7 +57,7 @@ const en: LocaleType = {
         dark: "Dark Theme",
       },
       Prompt: "Prompts",
-      Masks: "Masks",
+      Masks: "Roles",
       Clear: "Clear Context",
       Settings: "Settings",
     },
@@ -73,7 +73,7 @@ const en: LocaleType = {
     Send: "Send",
     Config: {
       Reset: "Reset to Default",
-      SaveAs: "Save as Mask",
+      SaveAs: "Save as Role",
     },
     IsContext: "Contextual Prompt",
   },
@@ -90,7 +90,7 @@ const en: LocaleType = {
     },
     IncludeContext: {
       Title: "Including Context",
-      SubTitle: "Export context prompts in mask or not",
+      SubTitle: "Export context prompts in role or not",
     },
     Steps: {
       Select: "Select",
@@ -174,12 +174,12 @@ const en: LocaleType = {
     },
     Mask: {
       Splash: {
-        Title: "Mask Splash Screen",
-        SubTitle: "Show a mask splash screen before starting new chat",
+        Title: "Role Splash Screen",
+        SubTitle: "Show a role splash screen before starting new chat",
       },
       Builtin: {
-        Title: "Hide Builtin Masks",
-        SubTitle: "Hide builtin masks in mask list",
+        Title: "Hide Builtin Roles",
+        SubTitle: "Hide builtin roles in role list",
       },
     },
     Prompt: {
@@ -305,7 +305,7 @@ const en: LocaleType = {
     Name: "Plugin",
   },
   Mask: {
-    Name: "Mask",
+    Name: "Role",
     Page: {
       Title: "Prompt Template",
       SubTitle: (count: number) => `${count} prompt templates`,
@@ -339,8 +339,8 @@ const en: LocaleType = {
         SubTitle: "Do not show in-context prompts in chat",
       },
       Share: {
-        Title: "Share This Mask",
-        SubTitle: "Generate a link to this mask",
+        Title: "Share This Role",
+        SubTitle: "Generate a link to this role",
         Action: "Copy Link",
       },
     },
@@ -348,8 +348,8 @@ const en: LocaleType = {
   NewChat: {
     Return: "Return",
     Skip: "Just Start",
-    Title: "Pick a Mask",
-    SubTitle: "Chat with the Soul behind the Mask",
+    Title: "Pick a Role",
+    SubTitle: "Chat with the Soul behind the Life-3",
     More: "Find More",
     NotShow: "Never Show Again",
     ConfirmNoShow: "Confirm to disable？You can enable it in settings later.",

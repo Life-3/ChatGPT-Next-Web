@@ -46,7 +46,7 @@ function useMaskGroup(masks: Mask[]) {
       if (!appBody || masks.length === 0) return;
 
       const rect = appBody.getBoundingClientRect();
-      const maxWidth = rect.width;
+      const maxWidth = rect.width * 0.8;
       const maxHeight = rect.height * 0.6;
       const maskItemWidth = 120;
       const maskItemHeight = 50;
@@ -55,10 +55,28 @@ function useMaskGroup(masks: Mask[]) {
       let maskIndex = 0;
       const nextMask = () => masks[maskIndex++ % masks.length];
 
-      const rows = Math.ceil(maxHeight / maskItemHeight);
-      const cols = Math.ceil(maxWidth / maskItemWidth);
+      const rows = Math.floor(maxHeight / maskItemHeight);
+      const cols = Math.floor(maxWidth / maskItemWidth);
 
-      const newGroups = new Array(rows)
+      const numberRows = Math.ceil(masks.length / cols);
+
+      const newMasks: Mask[][] = [];
+
+      for (let i = 0; i < numberRows; i++) {
+        const row: Mask[] = [];
+        for (let j = 0; j < cols; j++) {
+          const index = i * cols + j;
+          if (index < masks.length) {
+            row.push(masks[index]);
+          } else {
+            break;
+          }
+        }
+        newMasks.push(row);
+      }
+      setGroups(newMasks);
+
+      /*const newGroups = new Array(rows)
         .fill(0)
         .map((_, _i) =>
           new Array(cols)
@@ -66,7 +84,7 @@ function useMaskGroup(masks: Mask[]) {
             .map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())),
         );
 
-      setGroups(newGroups);
+      setGroups(newGroups);*/
     };
 
     computeGroup();
@@ -139,17 +157,6 @@ export function NewChat() {
             }}
           ></IconButton>
         )}
-      </div>
-      <div className={styles["mask-cards"]}>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f606" size={24} />
-        </div>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f916" size={24} />
-        </div>
-        <div className={styles["mask-card"]}>
-          <EmojiAvatar avatar="1f479" size={24} />
-        </div>
       </div>
 
       <div className={styles["title"]}>{Locale.NewChat.Title}</div>
