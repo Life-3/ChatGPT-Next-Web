@@ -172,7 +172,7 @@ const cn = {
     },
     Mask: {
       Splash: {
-        Title: "面具启动页",
+        Title: "Life-3启动页",
         SubTitle: "新建聊天时，展示Life-3启动页",
       },
       Builtin: {

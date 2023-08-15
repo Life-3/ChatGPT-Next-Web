@@ -252,7 +252,7 @@ function SyncItems() {
     <List>
       <ListItem
         title={"上次同步：" + new Date().toLocaleString()}
-        subTitle={"20 次对话，100 条消息，200 提示词，20 面具"}
+        subTitle={"20 次对话，100 条消息，200 提示词，20 角色"}
       >
         <IconButton
           icon={<ResetIcon />}
@@ -265,7 +265,7 @@ function SyncItems() {
 
       <ListItem
         title={"本地备份"}
-        subTitle={"20 次对话，100 条消息，200 提示词，20 面具"}
+        subTitle={"20 次对话，100 条消息，200 提示词，20 角色"}
       ></ListItem>
 
       <ListItem
